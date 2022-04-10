@@ -43,7 +43,7 @@ function App() {
   
   return (
     <Router>
-      <Navbar title="BUBU" searchBar={false} />
+      <Navbar title="Todo List"/>
       <Routes>
         <Route
           path="/"
