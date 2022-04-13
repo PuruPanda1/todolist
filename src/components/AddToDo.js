@@ -1,17 +1,12 @@
-import React, { useState } from "react";
-
 export default function AddToDo(props) {
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+  
   // form's on submit function
   const submit = (e) => {
     e.preventDefault();
-    if (!title || !desc) {
+    if (!props.title || !props.desc) {
       alert("title or description cannot be empty");
     } else {
-      props.addtodo(title, desc,setTitle,setDesc);
-      // setTitle("");
-      // setDesc("");
+      props.addtodo(props.title, props.desc,props.setTitle,props.setDesc);
     }
   };
   return (
@@ -27,9 +22,9 @@ export default function AddToDo(props) {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            value={title}
+            value={props.title}
             onChange={(e) => {
-              setTitle(e.target.value);
+              props.setTitle(e.target.value);
             }}
           />
         </div>
@@ -42,9 +37,9 @@ export default function AddToDo(props) {
             style={{ minHeight: "100px" }}
             className="form-control"
             id="exampleInputPassword1"
-            value={desc}
+            value={props.desc}
             onChange={(e) => {
-              setDesc(e.target.value);
+              props.setDesc(e.target.value);
             }}
           />
         </div>
