@@ -3,14 +3,15 @@ import React, { useState } from "react";
 export default function AddToDo(props) {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  // form's on submit function
   const submit = (e) => {
     e.preventDefault();
     if (!title || !desc) {
       alert("title or description cannot be empty");
     } else {
-      props.addtodo(title, desc);
-      setTitle("");
-      setDesc("");
+      props.addtodo(title, desc,setTitle,setDesc);
+      // setTitle("");
+      // setDesc("");
     }
   };
   return (

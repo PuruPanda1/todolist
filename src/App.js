@@ -12,7 +12,7 @@ function App() {
   } else {
     initTodo = JSON.parse(localStorage.getItem("todoArray"));
   }
-  // Delete function
+  // ! Delete function
   const onDelete = (todo) => {
     // Deleting the todo
     settodoArray(
@@ -21,8 +21,8 @@ function App() {
       })
     );
   };
-  //  add function
-  const addtodo = (title, desc) => {
+  // * add function
+  const addtodo = (title, desc, setTitle, setDesc, num) => {
     let sn;
     if (todoArray.length === 0) {
       sn = 1;
@@ -34,23 +34,37 @@ function App() {
       title: title,
       description: desc,
     };
+    setTitle("");
+    setDesc("");
     settodoArray([...todoArray, mytodo]);
   };
+  // !not working as of now ... on edit function for edit button
+  const onEdit = (todo) => {
+    let t = todo["title"];
+    let d = todo["description"];
+    console.log(t + " " + d);
+    onDelete(todo);
+  };
+  // * todoArray use state variable
   const [todoArray, settodoArray] = useState(initTodo);
   useEffect(() => {
     localStorage.setItem("todoArray", JSON.stringify(todoArray));
-  }, [todoArray])
-  
+  }, [todoArray]);
+
   return (
     <Router>
-      <Navbar title="Todo List"/>
+      <Navbar title="Todo List" />
       <Routes>
         <Route
           path="/"
           element={
             <>
               <AddToDo addtodo={addtodo} />
-              <TodoList todoArray={todoArray} onDelete={onDelete} />
+              <TodoList
+                todoArray={todoArray}
+                onDelete={onDelete}
+                onEdit={onEdit}
+              />
             </>
           }
         />
